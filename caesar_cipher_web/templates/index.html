@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="transition-colors duration-300">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caesar Cipher Web</title>
+  
+  <!-- Enable Tailwind Dark Mode via class strategy -->
+  <script>
+    tailwind.config = {
+      darkMode: 'class'
+    };
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-all duration-300 min-h-screen">
+
+  <div class="max-w-xl mx-auto px-4 py-8">
+    <!-- Header and Toggle Button -->
+    <div class="flex justify-between items-center mb-6">
+      <h1 class="text-3xl font-bold text-blue-600 dark:text-blue-400">🔐 Caesar Cipher</h1>
+      <button id="themeToggle" class="px-3 py-1 bg-gray-300 dark:bg-gray-700 text-sm rounded shadow hover:scale-105 transition-all">
+        Toggle Theme
+      </button>
+    </div>
+
+    <!-- Form Section -->
+    <form method="post" class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-xl space-y-4">
+      <div>
+        <label class="block font-semibold mb-1">Enter Text:</label>
+        <textarea name="text" rows="4" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 transition-all" required></textarea>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Key (1–25):</label>
+        <input type="number" name="key" class="w-full p-3 border rounded-xl focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 transition-all" />
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Select Mode:</label>
+        <select name="mode" class="w-full p-3 border rounded-xl dark:bg-gray-700 dark:border-gray-600">
+          <option value="encrypt">Encrypt</option>
+          <option value="decrypt">Decrypt</option>
+          <option value="brute">Brute-force Decrypt</option>
+        </select>
+      </div>
+
+      <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-xl font-semibold tracking-wide transition-all transform hover:scale-105">
+        Run
+      </button>
+    </form>
+
+    <!-- Output Section -->
+    {% if result %}
+    <div class="bg-green-100 dark:bg-green-900 dark:text-green-200 p-4 mt-6 rounded-xl shadow-md transition-all">
+      <h2 class="text-xl font-semibold mb-2 text-green-800 dark:text-green-300">Result:</h2>
+      <p class="whitespace-pre-line break-words">{{ result|safe }}</p>
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Dark Mode Toggle Script -->
+  <script>
+    const toggleBtn = document.getElementById('themeToggle');
+    toggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+    });
+  </script>
+
+</body>
+</html>
